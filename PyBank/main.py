@@ -8,7 +8,7 @@
 import csv
 
 #Includes Header: (Date, Profits/Losses)
-budget_csv_path = "budget_data.csv"
+budget_csv_path = "PyBank/budget_data.csv"
 
 with open(budget_csv_path, newline="") as csvfile:
     csv_reader = csv.reader(csvfile, delimiter=",")
@@ -34,25 +34,28 @@ with open(budget_csv_path, newline="") as csvfile:
         # Increment months and add totals 
         months += 1
         total += int(row[1])
+        
+        if prev_row_value == 0:
+            pass
+        else:
+            difference_value = int(row[1]) - prev_row_value
 
-        difference_value = int(row[1]) - prev_row_value
-
-        # Find highest values
-        if (difference_value > high_increase):
-             high_increase = difference_value
-             high_mon = row[0]
-       
-       # Find lowest values
-        if (difference_value < low_decrease):
-            low_decrease = difference_value
-            low_mon = row[0]
+            # Find highest values
+            if (difference_value > high_increase):
+                high_increase = difference_value
+                high_mon = row[0]
+        
+        # Find lowest values
+            if (difference_value < low_decrease):
+                low_decrease = difference_value
+                low_mon = row[0]
 
 
-        avg_total += difference_value
+            avg_total += difference_value
 
         prev_row_value = int(row[1])
         
-    average = round(avg_total / months, 2)
+    average = round(avg_total / (months - 1), 2)
     
 
     ### Print Financial Analysis ###
