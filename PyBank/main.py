@@ -34,25 +34,19 @@ with open(budget_csv_path, newline="") as csvfile:
     # For each row, separate the first column into two
     for row in csv_reader:
 
-        # Split date by "-" and re-add columns
-        new_row =  row[0].split("-")
-        new_row.append(row[1])
-
         # Increment months and add totals 
         months += 1
-        total += int(new_row[2])
+        total += int(row[1])
     
         # Find highest values
-        if (int(new_row[2]) > high_increase):
-             high_increase = int(new_row[2])
-             high_mon = new_row[0]
-             high_year = new_row[1]
+        if (int(row[1]) > high_increase):
+             high_increase = int(row[1])
+             high_mon = row[0]
        
        # Find lowest values
-        if (int(new_row[2]) < low_decrease):
-            low_decrease = int(new_row[2])
-            low_mon = new_row[0]
-            low_year = new_row[1]
+        if (int(row[1]) < low_decrease):
+            low_decrease = int(row[1])
+            low_mon = row[0]
             
 
     average = total / months
@@ -61,13 +55,13 @@ with open(budget_csv_path, newline="") as csvfile:
     # print(low_decrease)
     # print(months)
     # print(total)
-    # print(new_row[2])
+    # print(row[1])
 
     ### Print Financial Analysis ###
     print("Financial Analysis")
     print("----------------------------")
     print(f"Total Months: {months}")
     print(f"Total: ${total}")
-    print(f"Average  Change: ${}")
-    print(f"Greatest Increase in Profits: {high_mon}-{high_year} (${high_increase})")
-    print(f"Greatest Decrease in Profits: {low_mon}-{low_year} (${low_decrease})")
+    print(f"Average  Change: ${average}")
+    print(f"Greatest Increase in Profits: {high_mon} (${high_increase})")
+    print(f"Greatest Decrease in Profits: {low_mon} (${low_decrease})")
