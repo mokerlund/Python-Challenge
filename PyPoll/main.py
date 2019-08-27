@@ -1,13 +1,8 @@
 # Your task is to create a Python script that analyzes the votes and calculates each of the following:
-
 #   * The total number of votes cast
-
 #   * A complete list of candidates who received votes
-
 #   * The percentage of votes each candidate won
-
 #   * The total number of votes each candidate won
-
 #   * The winner of the election based on popular vote.
 
 import csv
@@ -34,14 +29,27 @@ with open(election_csv_path, newline="") as csvfile:
 
         # Need to create a dictionary to add new name each time one comes up
         # And add the value +1 per vote
+        # candidates = {candidate1:vote, candidate2:vote}
+        # candidates[candidate1] == vote
         if row[2] in candidates:
             candidates[row[2]] += 1
         else:
             candidates.update({row[2]: 1})
 
-        # candidates = {candidate1:vote, candidate2:vote}
-        # candidates[candidate1] == vote
-    print(candidates)
-    print(votes_cast)
+    # Winner has the most votes
+    # Key = 
+    winner = max(candidates, key=candidates.get)
 
-    # winner = max(candidates[candidate1], candidates[candidate2], candidates[candidate3])
+    # Print results
+    print("Election Results")
+    print("-------------------------")
+    print(f"Total Votes: {votes_cast}")
+    print("-------------------------")
+
+    # Iterate through dictionary to print out all results
+    for candidate in candidates:
+      print(f"{candidate}: {round((candidates[candidate] * 100)/votes_cast, 3)}% ({candidates[candidate]})")
+
+    print("-------------------------")
+    print(f"Winner: {winner}")
+    print("-------------------------")
