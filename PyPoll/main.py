@@ -6,6 +6,8 @@
 #   * The winner of the election based on popular vote.
 
 import csv
+import sys
+sys.stdout = open('poll_results.txt', 'w')
 
 # Includes Header: (Voter ID, County, Candidate)
 election_csv_path = "PyPoll/election_data.csv"

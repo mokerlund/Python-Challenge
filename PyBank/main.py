@@ -6,6 +6,8 @@
 #   * The greatest decrease in losses (date and amount) over the entire period (Assuming Between Months)
 
 import csv
+import sys
+sys.stdout = open('profit_loss_results.txt', 'w')
 
 #Includes Header: (Date, Profits/Losses)
 budget_csv_path = "PyBank/budget_data.csv"
