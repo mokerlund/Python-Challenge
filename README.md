@@ -1,5 +1,4 @@
 ### 4 Challenges: PyBank, PyPoll, PyBoss, PyParagraph
-# This was an assignment for the UCB Extention Bootcamp
 
 ## PyBank
 
